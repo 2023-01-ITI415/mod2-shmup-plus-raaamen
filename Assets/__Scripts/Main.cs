@@ -14,6 +14,17 @@ public class Main : MonoBehaviour {
     public float enemySpawnPerSecond = 0.5f; // # Enemies/second
     public float enemyInsetDefault = 1.5f; // Padding for position
     public float gameRestartDelay = 2;
+    public int waveLevel = 1;
+    public int enemiesInWave;
+    public int enemiesInWaveAdder = 3;
+
+    public List<GameObject> wave1Enemies;
+    public List<GameObject> wave2Enemies;
+    public List<GameObject> wave3Eemies;
+
+    public List<GameObject> enemiesInScene;
+    
+
 
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
@@ -57,7 +68,7 @@ public class Main : MonoBehaviour {
         bndCheck = GetComponent<BoundsCheck>();
 
         // Invoke SpawnEnemy() once (in 2 seconds, based on default values)
-        Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+        //Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
 
         // A generic Dictionary with WeaponType as the key
         WEAP_DICT = new Dictionary<eWeaponType, WeaponDefinition>();
@@ -75,10 +86,23 @@ public class Main : MonoBehaviour {
             return;
         }
 
+        //checking if all of the enemies in the wave have been spawned
+        if (enemiesInScene.Count == enemiesInWave)
+        {
+            spawnEnemies = false;
+            Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+            return;
+        }
+        else if (enemiesInScene.Count == 0){
+            CheckWave();
+        }
 
         // Pick a random Enemy prefab to instantiate
         int ndx = Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
+
+        //adds enemy to list of enemies currently in scene
+        enemiesInScene.Add(go);
 
         // Position the Enemy above the screen with a random x position
         float enemyInset = enemyInsetDefault;
@@ -137,5 +161,13 @@ public class Main : MonoBehaviour {
         // This returns a new WeaponDefinition with a type of WeaponType.none,
         // which means it has failed to find the right WeaponDefinition
         return new WeaponDefinition();
+    }
+
+
+    public void CheckWave(){
+        waveLevel++;
+        enemiesInWave+=enemiesInWaveAdder;
+
+        spawnEnemies = true;
     }
 }

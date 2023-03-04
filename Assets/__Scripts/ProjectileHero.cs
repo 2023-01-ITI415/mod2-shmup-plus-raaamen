@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent (typeof(BoundsCheck))]
 public class ProjectileHero : MonoBehaviour {
 
-    private BoundsCheck bndCheck;
+    private protected BoundsCheck bndCheck;
     private Renderer rend;
 
     [Header("Dynamic")]
@@ -32,7 +32,7 @@ public class ProjectileHero : MonoBehaviour {
         rigid = GetComponent<Rigidbody>();
     }
 
-     void Update()
+    public virtual void Update()
     {
         if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offUp))
         {
