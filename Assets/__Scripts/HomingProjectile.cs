@@ -20,11 +20,10 @@ public class HomingProjectile : MonoBehaviour
         }
 
         var step =  vel.magnitude * Time.deltaTime;
-
+        transform.LookAt(player.transform.position); 
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 
     }
-
     public Vector3 vel
     {
         get { return rigid.velocity; }
