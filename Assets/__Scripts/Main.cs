@@ -20,7 +20,7 @@ public class Main : MonoBehaviour {
 
     public List<GameObject> wave1Enemies;
     public List<GameObject> wave2Enemies;
-    public List<GameObject> wave3Eemies;
+    public List<GameObject> wave3Enemies;
 
     public List<GameObject> enemiesInScene;
     
@@ -80,6 +80,18 @@ public class Main : MonoBehaviour {
 
     public void SpawnEnemy()
     {
+        switch (waveLevel)
+        {
+            case 1:
+                enemiesInWave = wave1Enemies.Count;
+                break;
+            case 2:
+                enemiesInWave = wave2Enemies.Count;
+                break;
+            case 3:
+                enemiesInWave = wave3Enemies.Count;
+                break;
+        }
         if(!spawnEnemies)
         {
             Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
@@ -166,8 +178,11 @@ public class Main : MonoBehaviour {
 
     public void CheckWave(){
         waveLevel++;
-        enemiesInWave+=enemiesInWaveAdder;
-
+        if (waveLevel==4)
+        {
+            DelayedRestart();
+        }
         spawnEnemies = true;
+        waveLevel++;
     }
 }
