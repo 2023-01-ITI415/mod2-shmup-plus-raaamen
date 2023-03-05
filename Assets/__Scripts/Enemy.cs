@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
         if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offDown))
         {
             // We're off the bottom, so destroy this GameObject
+            Main.S.enemiesInScene.Remove(this.gameObject);
             Destroy(gameObject);
         }
 
@@ -91,6 +92,8 @@ public class Enemy : MonoBehaviour
                         calledShipDestroyed = true;
                         Main.SHIP_DESTROYED(this);
                     }
+                    Main.S.enemiesInScene.Remove(this.gameObject);
+                    
                     Destroy(this.gameObject);
                 }
             }

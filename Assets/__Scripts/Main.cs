@@ -16,7 +16,6 @@ public class Main : MonoBehaviour {
     public float gameRestartDelay = 2;
     public int waveLevel = 1;
     public int enemiesInWave;
-    public int enemiesInWaveAdder = 3;
 
     public List<GameObject> wave1Enemies;
     public List<GameObject> wave2Enemies;
@@ -68,7 +67,7 @@ public class Main : MonoBehaviour {
         bndCheck = GetComponent<BoundsCheck>();
 
         // Invoke SpawnEnemy() once (in 2 seconds, based on default values)
-        //Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+        Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
 
         // A generic Dictionary with WeaponType as the key
         WEAP_DICT = new Dictionary<eWeaponType, WeaponDefinition>();
@@ -80,20 +79,26 @@ public class Main : MonoBehaviour {
 
     public void SpawnEnemy()
     {
+        Debug.Log("Current wave:" +waveLevel);
+
         switch (waveLevel)
         {
             case 1:
                 enemiesInWave = wave1Enemies.Count;
+                Debug.Log(enemiesInWave);
                 break;
             case 2:
                 enemiesInWave = wave2Enemies.Count;
+                Debug.Log(enemiesInWave);
                 break;
             case 3:
                 enemiesInWave = wave3Enemies.Count;
+                Debug.Log(enemiesInWave);
                 break;
         }
         if(!spawnEnemies)
         {
+            CheckWave();
             Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
             return;
         }
@@ -101,17 +106,17 @@ public class Main : MonoBehaviour {
         //checking if all of the enemies in the wave have been spawned
         if (enemiesInScene.Count == enemiesInWave)
         {
+            Debug.Log("Enemies in scene = enemies in wave");
             spawnEnemies = false;
             Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
             return;
-        }
-        else if (enemiesInScene.Count == 0){
-            CheckWave();
         }
 
         // Pick a random Enemy prefab to instantiate
         int ndx = Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
+
+        
 
         //adds enemy to list of enemies currently in scene
         enemiesInScene.Add(go);
@@ -144,6 +149,7 @@ public class Main : MonoBehaviour {
     public void Restart()
     {
         // Reload _Scene_0 to restart the game
+        waveLevel = 1;
         SceneManager.LoadScene("__Scene_0");
     }
 
@@ -177,11 +183,11 @@ public class Main : MonoBehaviour {
 
 
     public void CheckWave(){
-        waveLevel++;
         if (waveLevel==4)
         {
             DelayedRestart();
         }
+        
         spawnEnemies = true;
         waveLevel++;
     }
