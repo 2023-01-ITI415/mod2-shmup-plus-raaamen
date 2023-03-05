@@ -54,6 +54,7 @@ public class Enemy_3 : Enemy
         if (u > 1)
         {
             // This Enemy_3 has finished its life
+            Main.S.enemiesInScene.Remove(this.gameObject);
             Destroy(this.gameObject);
             return;
         }

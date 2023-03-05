@@ -45,6 +45,7 @@ public class Main : MonoBehaviour {
         // Potentially generate a PowerUp
         if (Random.value <= e.powerUpDropChance)
         {
+            Main.S.enemiesInScene.Remove(e.gameObject);
             // Choose which PowerUp to pick
             // Pick one from the possibilities in powerUpFrequency
             int ndx = Random.Range(0, S.powerUpFrequency.Length);
@@ -187,8 +188,11 @@ public class Main : MonoBehaviour {
         {
             DelayedRestart();
         }
-        
-        spawnEnemies = true;
-        waveLevel++;
+        if (enemiesInScene.Count==0)
+        {
+            spawnEnemies = true;
+            waveLevel++;
+        }
+        return; 
     }
 }

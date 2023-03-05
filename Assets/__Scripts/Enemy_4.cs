@@ -114,6 +114,7 @@ public class Enemy_4 : Enemy
                 }
 
                 // Destroy this Enemy_4
+                Main.S.enemiesInScene.Remove(this.gameObject);
                 Destroy(gameObject);
             }
         }

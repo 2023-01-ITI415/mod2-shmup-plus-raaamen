@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
         {
             // We're off the bottom, so destroy this GameObject
             Main.S.enemiesInScene.Remove(this.gameObject);
+            Debug.Log("removed self from list");
             Destroy(gameObject);
         }
 
