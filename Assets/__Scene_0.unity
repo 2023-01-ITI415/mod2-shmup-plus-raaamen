@@ -511,7 +511,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -655.25745, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -690,6 +690,8 @@ MonoBehaviour:
   - {fileID: 7220783269664156945, guid: 79372578aa629d44d8adb01a0a9078b5, type: 3}
   - {fileID: 7220783269664156945, guid: 79372578aa629d44d8adb01a0a9078b5, type: 3}
   enemiesInScene: []
+  waveText: {fileID: 0}
+  enemiesInSceneText: {fileID: 0}
   weaponDefinitions:
   - type: 1
     letter: B
@@ -1951,7 +1953,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -623.1213, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
