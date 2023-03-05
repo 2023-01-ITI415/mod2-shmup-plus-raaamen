@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Main : MonoBehaviour {
 
@@ -23,7 +24,8 @@ public class Main : MonoBehaviour {
 
     public List<GameObject> enemiesInScene;
     
-
+    public TextMeshProUGUI waveText;
+    public TextMeshProUGUI enemiesInSceneText;
 
     public WeaponDefinition[] weaponDefinitions;
     public GameObject prefabPowerUp;
@@ -184,8 +186,11 @@ public class Main : MonoBehaviour {
 
 
     public void CheckWave(){
+        waveText.text = "Current Wave: "+waveLevel;
+        enemiesInSceneText.text = "Enemies remaining: "+enemiesInScene.Count;
         if (waveLevel==4)
         {
+            waveLevel=1;
             DelayedRestart();
         }
         if (enemiesInScene.Count==0)
