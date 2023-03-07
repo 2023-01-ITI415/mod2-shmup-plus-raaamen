@@ -690,8 +690,8 @@ MonoBehaviour:
   - {fileID: 7220783269664156945, guid: 79372578aa629d44d8adb01a0a9078b5, type: 3}
   - {fileID: 7220783269664156945, guid: 79372578aa629d44d8adb01a0a9078b5, type: 3}
   enemiesInScene: []
-  waveText: {fileID: 0}
-  enemiesInSceneText: {fileID: 0}
+  waveText: {fileID: 2042448362}
+  enemiesInSceneText: {fileID: 230628974}
   weaponDefinitions:
   - type: 1
     letter: B
